@@ -14,4 +14,8 @@ impl Player{
             y:0
         }
     }
+    pub fn move_player(&mut self, x:i32, y:i32){
+        self.x += x;
+        self.y += y;
+    }
 }
