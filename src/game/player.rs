@@ -3,11 +3,12 @@ pub struct Player{
     pub y: i32,
 }
 
-pub fn hello(){
-    println!("Hello from Player!");
-}
+// pub fn hello(){
+//     println!("Hello from Player!");
+// }
 
 impl Player{
+    //constructor
     pub fn new() -> Player{
         Player{
             x:0,

@@ -1,3 +1,6 @@
+//since we're dealing with keyboard input let's bring in the std::io module
+use std::io;
+
 //So this is a bit confusing but let's hammer it out.
 //the "player.rs" exists in the same folder as "game_state.rs"
 //both of these are modules in themselves. So we've declared them
@@ -38,6 +41,47 @@ impl GameState{
     //because it's passing itself as a mutable reference 
     //to the function(so we can modify the state) 
     pub fn main_loop(&mut self){
+        loop{
+            println!("The Player is at {}, {}", self.my_player.x, self.my_player.y);
+            println!("What would you like to do?(U,D,L,R)");
 
+            //create a new mutable string input
+            let mut input = String::new();
+            //this first match just handles any errors with reading line
+            match io::stdin().read_line(&mut input){
+                Ok(_) => {
+                    //this one actually matches on the string input.
+                    match input.to_lowercase().trim(){
+                        "u" | "up" => {
+                            //up
+                            self.my_player.move_player(0, 1);
+                        }
+                        "d" | "down" => {
+                            //down
+                            self.my_player.move_player(0, -1);
+                        }
+                        "l" | "left" => {
+                            //left
+                            self.my_player.move_player(-1, 0);
+                        }
+                        "r" | "right" => {
+                            //right
+                            self.my_player.move_player(1, 0);
+                        }
+                        "exit" => {
+                            //right
+                            break;
+                        }
+                        //this is the default case
+                        _ => {
+                            println!("Please choose a direction")
+                        }
+                    }
+                }
+                Err(e) => {
+                    println!("Something went wrong: {}", e);
+                }
+            }
+        }
     }
 }

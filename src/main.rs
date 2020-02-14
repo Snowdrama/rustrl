@@ -1,5 +1,5 @@
 
-//this pulls in everything declared in game.rs
+//this pulls in everything declared in game/mod.rs
 mod game;
 //Since we only really have game state, to avoid using "game::game_state::GameState" everywhere,
 //we pull just the gamestate into the scope. 
@@ -15,7 +15,7 @@ use game::game_state::GameState;
 fn main() {
     //since we `use game::GameState` above we can just create a new GameState
     //new is a function of GameState, check in the game.rs file
-    let my_game = GameState::new();
+    let mut my_game = GameState::new();
 
     //this function contains the main game loop, main just goes into there,
     //and then doesn't come back here till the game is exited.
